@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -12,10 +13,11 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
-@AllArgsConstructor(staticName ="build")
+@AllArgsConstructor(staticName = "build")
 @NoArgsConstructor
 @Validated
 @Table(name = "employees")
+
 public class Employee {
 
 
@@ -25,7 +27,7 @@ public class Employee {
     @NotNull(message = "First Name not be null ")
     private String firstName;
     @NotNull(message = "Last Name not be null ")
-    private String lsatName;
+    private String lastName;
     @Email(message = "enter the valid Email address")
     private String email;
     @NotNull(message = "Enter the salary")

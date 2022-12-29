@@ -19,7 +19,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee saveEmp(Employee employee) {
         Employee employees = Employee.build(0,
                 employee.getFirstName(),
-                employee.getLsatName(),
+                employee.getLastName(),
                 employee.getEmail(),
                 employee.getSalary());
         return employeeRepository.save(employees);

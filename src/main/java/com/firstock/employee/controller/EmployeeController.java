@@ -6,6 +6,7 @@ import com.firstock.employee.entity.Employee;
 import com.firstock.employee.jwt.utils.JwtUtil;
 import com.google.gson.Gson;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,7 @@ import java.util.List;
 @Valid
 @RestController
 @RequestMapping("/api/emp")
+@CrossOrigin(origins = "*")
 public class EmployeeController {
 
     @Autowired
@@ -49,7 +51,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<?> savaEmp(@RequestBody @Valid Employee employee, BindingResult result) {
+    public ResponseEntity<?> savaEmp(@RequestBody @Valid Employee employee, @NotNull BindingResult result) {
         if (result.hasErrors()) {
             return new ResponseEntity<String>(gson.toJson("Employee not save"), HttpStatus.BAD_REQUEST);
         } else if (employeeService.exisById(employee.getId())) {
@@ -66,13 +68,13 @@ public class EmployeeController {
         List<Employee> employees = null;
         try {
             employees = (List<Employee>) employeeService.getAllEmp();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.toString());
         }
-        if (employees!= null){
-            return new ResponseEntity<List<Employee>>(employees,HttpStatus.OK);
-        }else {
-            return new ResponseEntity<String>(gson.toJson("no Employee found"),HttpStatus.BAD_REQUEST);
+        if (employees != null) {
+            return new ResponseEntity<List<Employee>>(employees, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<String>(gson.toJson("no Employee found"), HttpStatus.BAD_REQUEST);
         }
 
     }
@@ -89,8 +91,8 @@ public class EmployeeController {
         return new ResponseEntity<String>("Delete Successfully", HttpStatus.OK);
     }
 
-    @PostMapping(value = "/update/{id}",consumes = { "application/json" })
-    public ResponseEntity<?> updateEmp(@PathVariable int id, @RequestBody @Valid Employee employee,BindingResult result) {
+        @PostMapping(value = "/update/{id}",consumes = { "application/json" })
+    public ResponseEntity<?> updateEmp(@PathVariable int id, @RequestBody @Valid Employee employee, @NotNull BindingResult result) {
         if (result.hasErrors()){
             return new ResponseEntity<Employee>(employee,HttpStatus.BAD_REQUEST);
         }else if (employeeService.exisById(employee.getId())){
@@ -99,4 +101,8 @@ public class EmployeeController {
             return new ResponseEntity<String>(gson.toJson("No Employee found"), HttpStatus.BAD_REQUEST);
         }
     }
+//    @PostMapping("/update/{id}")
+//    public ResponseEntity<Employee> updateEmp(@PathVariable int id, @RequestBody Employee employee) {
+//        return new ResponseEntity<Employee>(employeeService.updateEmp(id, employee), HttpStatus.OK);
+//    }
 }

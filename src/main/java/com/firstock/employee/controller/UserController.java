@@ -34,7 +34,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/adduser", consumes = {"application/json"})
-    public ResponseEntity<String> saveContact(@RequestBody @Valid User user, BindingResult result){
+    public ResponseEntity<String> saveUser(@RequestBody @Valid User user, BindingResult result){
         if(result.hasErrors() || userRepo.existsById(user.getUsername()) ) {
             return new ResponseEntity<String>(gson.toJson("User already Exist try Different username"), HttpStatus.BAD_REQUEST);
         }else{

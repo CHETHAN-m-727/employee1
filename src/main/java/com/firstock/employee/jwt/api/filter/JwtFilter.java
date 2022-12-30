@@ -23,6 +23,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Autowired
     private JwtUtil jwtUtil;
+
     @Autowired
     private CustomUserDetailsService service;
 
@@ -57,7 +58,7 @@ public class JwtFilter extends OncePerRequestFilter {
             }
             filterChain.doFilter(httpServletRequest, httpServletResponse);
         } catch (Exception e) {
-            System.out.println(e.toString()+"  Error In JWTFilter");
+            System.out.println(e.toString() +"  Error In JWTFilter");
         }
     }
 }

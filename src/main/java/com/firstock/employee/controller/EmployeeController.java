@@ -19,12 +19,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-
+@CrossOrigin(origins = "*")
 @Validated
 @Valid
 @RestController
 @RequestMapping("/api/emp")
-@CrossOrigin(origins = "*")
 public class EmployeeController {
 
     @Autowired

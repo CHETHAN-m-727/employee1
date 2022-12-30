@@ -1,11 +1,12 @@
 package com.firstock.employee;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 @SpringBootApplication
+//@SecurityScheme(name = "/javainuseapi", scheme = "basic", type = SecuritySchemeType.HTTP, in = SecuritySchemeIn.HEADER)
 public class EmployeeApplication {
 
 	public static void main(String[] args) {
